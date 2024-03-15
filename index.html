@@ -65,8 +65,8 @@
             var button2 = document.getElementById('button2');
             var rect = button2.getBoundingClientRect();
                 button2.style.position='absolute';
-                button2.style.top = (event.movementY) + rect.top + 'px';
-                button2.style.left = (event.movementX) + rect.left + 'px';
+                button2.style.top = event.movementY + rect.top + 'px';
+                button2.style.left = event.movementX + rect.left + 'px';
             }
         ;
 
