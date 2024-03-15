@@ -57,18 +57,29 @@
                 }
             });
 
-            document.addEventListener('touchstart', function(event) {
+            button2.addEventListener('touchstart', function(event) {
                 if (isInside(event.touches[0], button2)) {
                     moveButton(event.touches[0]);
                 }
             });
 
-            function moveButton(event) {
+            function moveButton(x, y) {
                 var rect = button2.getBoundingClientRect();
                 button2.style.position = 'absolute';
-                button2.style.top = event.movementY + rect.top + 'px';
-                button2.style.left = event.movementX + rect.left + 'px';
+                button2.style.top = y + rect.top + 'px';
+                button2.style.left = x + rect.left + 'px';
             }
+
+            document.addEventListener('mousemove', function(event) {
+                if (isInside(event, button2)) {
+                    moveButton(event.movementX, event.movementY);
+                }
+            });
+
+            button2.addEventListener('touchstart', function(event) {    
+                    moveButton(event.touches[0].clientX, event.touches[0].clientY);
+                    console.log(event.touches[0].clientX, event.touches[0].clientY);
+            });
         });
     </script>
 </body>
