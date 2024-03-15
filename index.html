@@ -57,8 +57,10 @@
                 }
             });
 
-            document.addEventListener('click', function(event) {
-                moveButton(event);
+            document.addEventListener('touchstart', function(event) {
+                if (isInside(event.touches[0], button2)) {
+                    moveButton(event.touches[0]);
+                }
             });
 
             function moveButton(event) {
