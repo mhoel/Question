@@ -35,13 +35,14 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            let question = new URLSearchParams(window.location.search).get('question') ?? 'I like JavaScript?';
-
+            const button2 = document.getElementById('button2');
+            var question = new URLSearchParams(window.location.search).get('question') ?? 'I like JavaScript?';
+            
             question = question.replace(/[\?]?$/, '?');
             document.querySelector('h1').innerText = question;
 
             function isInside(event, element) {
-                var rect = element.getBoundingClientRect();
+                const rect = element.getBoundingClientRect();
                 return (
                     event.clientX > rect.left &&
                     event.clientX < rect.right &&
@@ -51,16 +52,16 @@
             }
 
             document.addEventListener('mousemove', function(event) {
-                var button2 = document.getElementById('button2');
-
                 if (isInside(event, button2)) {
                     moveButton(event);
                 }
+            });
 
+            document.addEventListener('click', function(event) {
+                moveButton(event);
             });
 
             function moveButton(event) {
-                var button2 = document.getElementById('button2');
                 var rect = button2.getBoundingClientRect();
                 button2.style.position = 'absolute';
                 button2.style.top = event.movementY + rect.top + 'px';
