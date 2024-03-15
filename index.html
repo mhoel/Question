@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buttons Page</title>
+    <title>Question</title>
     <style>
         .container {
             display: flex;
@@ -36,7 +36,7 @@
     </style>
 </head>
 <body>
-        <h1>Welcome to the Page</h1>
+        <h1>Question?</h1>
         <button id="button1">Yes</button>
         <button id="button2">No</button>    
     
@@ -45,6 +45,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             let question = new URLSearchParams(window.location.search).get('question') ?? 'I like JavaScript?';
 
+            question = question.replace(/[\?]?$/, '?');
             document.querySelector('h1').innerText = question;
         });
         document.addEventListener('mousemove', function(event) {
