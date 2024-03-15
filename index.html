@@ -29,10 +29,9 @@
     </style>
 </head>
 <body>
-        <h1>Question?</h1>
-        <button id="button1">Yes</button>
-        <button id="button2">No</button>    
-    
+    <h1>Question?</h1>
+    <button id="button1">Yes</button>
+    <button id="button2">No</button>    
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -40,37 +39,34 @@
 
             question = question.replace(/[\?]?$/, '?');
             document.querySelector('h1').innerText = question;
-        });
-        document.addEventListener('mousemove', function(event) {
-            var button2 = document.getElementById('button2');
-            
-        function isInside(event, element) {
-            var rect = element.getBoundingClientRect();
-            return (event.clientX > rect.left &&
-                event.clientX < rect.right &&
-                event.clientY > rect.top &&
-                event.clientY < rect.bottom);
-        }
 
-        document.addEventListener('mousemove', function(event) {
-            var button2 = document.getElementById('button2');
-
-            if(isInside(event, button2)) {
-                moveButton(event);    
+            function isInside(event, element) {
+                var rect = element.getBoundingClientRect();
+                return (
+                    event.clientX > rect.left &&
+                    event.clientX < rect.right &&
+                    event.clientY > rect.top &&
+                    event.clientY < rect.bottom
+                );
             }
-            
-        })
-        function moveButton(event) {
-            
-            var button2 = document.getElementById('button2');
-            var rect = button2.getBoundingClientRect();
-                button2.style.position='absolute';
+
+            document.addEventListener('mousemove', function(event) {
+                var button2 = document.getElementById('button2');
+
+                if (isInside(event, button2)) {
+                    moveButton(event);
+                }
+
+            });
+
+            function moveButton(event) {
+                var button2 = document.getElementById('button2');
+                var rect = button2.getBoundingClientRect();
+                button2.style.position = 'absolute';
                 button2.style.top = event.movementY + rect.top + 'px';
                 button2.style.left = event.movementX + rect.left + 'px';
             }
-        ;
-
-        })
+        });
     </script>
 </body>
 </html>
