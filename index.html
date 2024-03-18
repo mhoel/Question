@@ -51,17 +51,8 @@
                 );
             }
 
-            document.addEventListener('mousemove', function(event) {
-                if (isInside(event, button2)) {
-                    moveButton(event);
-                }
-            });
-
-            button2.addEventListener('touchstart', function(event) {
-                if (isInside(event.touches[0], button2)) {
-                    moveButton(event.touches[0]);
-                }
-            });
+            let prevX = 0;
+            let prevY = 0;
 
             function moveButton(x, y) {
                 var rect = button2.getBoundingClientRect();
@@ -72,8 +63,13 @@
 
             document.addEventListener('mousemove', function(event) {
                 if (isInside(event, button2)) {
-                    moveButton(event.movementX, event.movementY);
+                    var rect = button2.getBoundingClientRect();
+                    var deltaX = event.clientX - prevX;
+                    var deltaY = event.clientY - prevY;
+                    moveButton(deltaX, deltaY);
                 }
+                prevX = event.clientX;
+                prevY = event.clientY;
             });
 
             button2.addEventListener('touchstart', function(event) {    
